@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @project.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @project.description %>
+</p>
+
+<h2>Tasks</h2>
+<% @project.tasks.each do |task| %>
+	<p>
+		<b>Task name:</b>
+		<%= task.name %>
+	</p>
+
+	<p>
+		<b>Description:</b>
+		<%= task.description %>
+	</p>
+<% end %>
+
+<h2>Add a task:</h2>
+<%= form_for([@project, @project.tasks.build]) do |f| %>
+	<div class="field">
+		<%= f.label :name %><br />
+		<%= f.text_field :name %>
+	</div>
+	<div class="field">
+		<%= f.label :description %><br />
+		<%= f.text_area :description %>
+	</div>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
